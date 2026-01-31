@@ -51,10 +51,8 @@
 
     <div class="max-w-md w-full bg-white rounded-[40px] shadow-2xl overflow-hidden relative border-[10px] border-blue-400 z-10">
         
-        <!-- Cabeçalho -->
         <div class="bg-blue-400 p-6 text-center relative">
             <div class="photo-container">
-                <!-- Imagem do Spank -->
                 <img src="https://images.tcdn.com.br/img/img_prod/1041916/boneco_spank_colecao_turma_do_barulho_anos_80_1597_1_f85497063d80d68f6a917e761005f963.jpg" alt="Boneco Spank" onerror="this.src='https://via.placeholder.com/160x160?text=Thomas'">
             </div>
             <h1 class="title-font text-white text-3xl mt-4 bounce uppercase tracking-wide">THOMAS</h1>
@@ -62,13 +60,11 @@
         </div>
 
         <div class="p-5 text-center space-y-5">
-            
             <div class="bg-yellow-50 p-4 rounded-2xl border-2 border-dashed border-yellow-400">
                 <p class="text-blue-600 font-bold text-lg mb-1 text-center">📅 DATA: <span id="displayData">15 DE OUTUBRO</span></p>
                 <p class="text-gray-700 text-sm text-center font-bold">📍 <span id="displayLocal">RUA DAS BRINCADEIRAS, 123</span></p>
             </div>
 
-            <!-- Programação -->
             <div class="space-y-2">
                 <h2 class="title-font text-orange-500 text-xl uppercase tracking-tighter">Etapas da Nossa Festa</h2>
                 <div class="text-left space-y-1 text-sm font-bold">
@@ -78,7 +74,6 @@
                 </div>
             </div>
 
-            <!-- Mensagem de Incentivo -->
             <div class="expectation-message">
                 <p class="title-font text-xl mb-1">Estamos à tua espera!</p>
                 <p class="text-sm font-medium leading-relaxed">
@@ -86,23 +81,21 @@
                 </p>
             </div>
 
-            <!-- Painel Administrativo (Invisível para convidados) -->
             <div id="adminArea" class="pt-4" style="display: none;">
                 <button onclick="compartilharWhatsApp()" class="btn-whatsapp w-full py-4 rounded-2xl font-bold shadow-lg">
                     <span>ENVIAR CONVITE PELO WHATSAPP</span>
                 </button>
-                <p class="text-[9px] text-gray-400 mt-2 italic text-center">Modo Administrador Ativo (Apenas visível para si)</p>
+                <p class="text-[9px] text-gray-400 mt-2 italic text-center">Modo Administrador Ativo</p>
             </div>
 
             <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Família do Thomas</p>
         </div>
-
         <div class="bg-blue-400 h-3"></div>
     </div>
 
     <script>
-        // Detecção de Administrador via URL (?admin=true)
         window.onload = function() {
+            // Verifica se "admin=true" está na URL
             const urlParams = new URLSearchParams(window.location.search);
             if (urlParams.get('admin') === 'true') {
                 document.getElementById('adminArea').style.display = 'block';
@@ -110,8 +103,8 @@
         };
 
         function compartilharWhatsApp() {
-            // O código deteta automaticamente o link onde está hospedado
-            const linkBase = window.location.href.split('?')[0]; 
+            // Remove os parâmetros da URL para mandar o link limpo aos convidados
+            const linkBase = window.location.origin + window.location.pathname;
             
             const data = document.getElementById('displayData').innerText;
             const local = document.getElementById('displayLocal').innerText;
