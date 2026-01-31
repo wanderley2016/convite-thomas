@@ -55,7 +55,8 @@
             <div class="photo-container">
                 <img src="https://images.tcdn.com.br/img/img_prod/1041916/boneco_spank_colecao_turma_do_barulho_anos_80_1597_1_f85497063d80d68f6a917e761005f963.jpg" alt="Boneco Spank" onerror="this.src='https://via.placeholder.com/160x160?text=Thomas'">
             </div>
-            <h1 class="title-font text-white text-3xl mt-4 bounce uppercase tracking-wide">THOMAS</h1>
+            <!-- Clique duplo aqui ativa o modo admin se a URL falhar -->
+            <h1 id="nomeThomas" ondblclick="ativarAdminManual()" class="title-font text-white text-3xl mt-4 bounce uppercase tracking-wide cursor-pointer select-none">THOMAS</h1>
             <p class="text-white text-lg font-bold italic">A Minha Grande Festa de 5 Anos!</p>
         </div>
 
@@ -81,12 +82,11 @@
                 </p>
             </div>
 
-            <!-- Botão de Admin -->
-            <div id="adminArea" style="display: none;" class="pt-4">
+            <div id="adminArea" style="display: none;" class="pt-4 border-t border-gray-100">
                 <button onclick="compartilharWhatsApp()" class="btn-whatsapp w-full py-4 rounded-2xl font-bold shadow-lg">
                     <span>ENVIAR CONVITE PELO WHATSAPP</span>
                 </button>
-                <p class="text-[9px] text-gray-400 mt-2 italic text-center uppercase tracking-widest">Modo Administrador Ativado</p>
+                <p class="text-[9px] text-gray-400 mt-2 italic text-center uppercase tracking-widest">Painel Administrativo Ativo</p>
             </div>
 
             <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Família do Thomas</p>
@@ -95,24 +95,28 @@
     </div>
 
     <script>
-        // Função executada ao carregar a página
-        window.addEventListener('load', function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const isAdmin = urlParams.get('admin');
-            
-            // Verifica se o parâmetro admin é exatamente "true"
-            if (isAdmin === 'true') {
-                const adminDiv = document.getElementById('adminArea');
-                if (adminDiv) {
-                    adminDiv.style.display = 'block';
-                }
+        // Tenta ativar via URL assim que carregar
+        function verificarAdmin() {
+            const params = new URLSearchParams(window.location.search);
+            if (params.get('admin') === 'true') {
+                ativarAdminManual();
             }
-        });
+        }
+
+        // Função que realmente mostra o botão
+        function ativarAdminManual() {
+            const area = document.getElementById('adminArea');
+            if(area) {
+                area.style.display = 'block';
+                // Feedback visual leve para saber que ativou
+                console.log("Modo Admin Ativado");
+            }
+        }
+
+        window.onload = verificarAdmin;
 
         function compartilharWhatsApp() {
-            // Gera o link base sem os parâmetros (ex: sem o ?admin=true)
             const linkBase = window.location.origin + window.location.pathname;
-            
             const data = document.getElementById('displayData').innerText;
             const local = document.getElementById('displayLocal').innerText;
 
@@ -129,24 +133,22 @@
             window.open(`https://api.whatsapp.com/send?text=${textoMsg}`, '_blank');
         }
 
-        // Animação de Confetes
+        // Confetes
         const wrapper = document.getElementById('confetti-wrapper');
         const colors = ['#FF5757', '#4CAF50', '#2196F3', '#FFDE59', '#E91E63'];
-
         function createConfetti() {
             if (!wrapper) return;
             const confetti = document.createElement('div');
             confetti.className = 'confetti';
             confetti.style.left = Math.random() * 100 + 'vw';
             confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-            confetti.style.width = (Math.random() * 8 + 4) + 'px';
-            confetti.style.height = confetti.style.width;
+            confetti.style.width = '8px';
+            confetti.style.height = '8px';
             confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
-            confetti.style.opacity = Math.random();
             wrapper.appendChild(confetti);
             setTimeout(() => { confetti.remove(); }, 5000);
         }
-        setInterval(createConfetti, 200);
+        setInterval(createConfetti, 250);
     </script>
 </body>
 </html>
