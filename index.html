@@ -7,7 +7,7 @@
     <!-- Configurações para o WhatsApp mostrar a miniatura (Preview) -->
     <title>Convite Thomas - 5 Anos</title>
     <meta property="og:title" content="Convite Thomas - 5 Anos">
-    <meta property="og:description" content="Clica para veres o meu convite especial!">
+    <meta property="og:description" content="Clica no link abaixo e veja meu convite especial!">
     <meta property="og:image" content="thomas.jpg">
     <meta property="og:type" content="website">
 
@@ -47,18 +47,26 @@
         }
         .btn-whatsapp:hover { background-color: #128C7E; transform: scale(1.02); }
 
-        /* Estilo Etiqueta (Badge) para Horários */
+        /* Estilo Base da Etiqueta (Badge) */
         .time-badge {
-            background: #ffffff;
-            color: #1e40af;
-            padding: 2px 10px;
-            border-radius: 10px;
+            color: #ffffff;
+            padding: 4px 12px;
+            border-radius: 12px;
             font-weight: 800;
-            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
-            min-width: 65px;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.15);
+            min-width: 70px;
             text-align: center;
-            border: 1px solid #e2e8f0;
+            display: inline-block;
+            font-size: 0.9rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
         }
+
+        /* Cores específicas solicitadas */
+        .bg-verde-badge { background-color: #22C55E; }   /* 13:00 */
+        .bg-amarelo-badge { background-color: #EAB308; } /* 16:15 */
+        .bg-laranja-badge { background-color: #F97316; } /* 16:30 */
+        .bg-vermelho-badge { background-color: #EF4444; } /* 17:00 */
+
     </style>
 </head>
 <body class="p-4 flex flex-col items-center min-h-screen">
@@ -71,7 +79,7 @@
         <!-- Cabeçalho Azul com Foto -->
         <div class="bg-blue-400 p-6 text-center relative">
             <div class="photo-container">
-                <img src="thomas.jpg" alt="Foto do Thomas" onerror="this.src='https://via.placeholder.com/160x160?text=Thomas'">
+                <img src="thomas.jpeg" alt="Foto do Thomas" onerror="this.src='https://via.placeholder.com/160x160?text=Thomas'">
             </div>
             <h1 id="nomeThomas" ondblclick="tentarAtivarAdmin()" class="title-font text-white text-3xl mt-4 bounce uppercase tracking-wide cursor-default select-none">THOMAS</h1>
             <p class="text-white text-lg font-bold italic">A Minha Grande Festa de 5 Anos!</p>
@@ -80,35 +88,38 @@
         <div class="p-5 text-center space-y-5">
             <!-- Data e Local -->
             <div class="bg-yellow-50 p-4 rounded-2xl border-2 border-dashed border-yellow-400">
-                <p class="text-blue-600 font-bold text-lg mb-1 text-center">📅 DATA: <span id="displayData">14 DE FEVEREIRO</span></p>
+                <p class="text-blue-600 font-bold text-lg mb-1 text-center uppercase tracking-tighter">📅 DATA: 14 DE FEVEREIRO</p>
+                <div class="h-[1px] bg-yellow-200 w-1/2 mx-auto my-2"></div>
                 <p class="text-gray-700 text-[11px] text-center font-bold leading-tight uppercase">
-                    📍 <span id="displayLocal">Rua Joaquim Alves Diniz, 35 (Esquina com estrada de Mogi das cruzes): Av. Imperador - Vila Rio Branco</span>
+                    📍 Rua Joaquim Alves Diniz, 35 (Esquina com estrada de Mogi das cruzes): Av. Imperador - Vila Rio Branco
                 </p>
             </div>
 
-            <!-- Programação com Estilo Badge -->
+            <!-- Programação com Badges Coloridos -->
             <div class="space-y-3">
                 <h2 class="title-font text-orange-500 text-xl uppercase tracking-tighter">O Plano da Diversão</h2>
                 <div class="text-left space-y-3">
-                    <div class="flex items-center gap-3 p-2 bg-blue-50 rounded-2xl text-blue-700 border-l-4 border-blue-400 shadow-sm">
-                        <span class="time-badge">13:00</span>
-                        <span class="text-sm font-bold">🚀 Começa a Brincadeira!</span>
+                    
+                    <div class="flex items-center gap-3 p-2 bg-green-50 rounded-2xl text-green-800 border-l-4 border-green-400 shadow-sm">
+                        <span class="time-badge bg-verde-badge">13:00</span>
+                        <span class="text-sm font-bold tracking-tight">🚀 Começa a Brincadeira!</span>
                     </div>
 
-                    <div class="flex items-center gap-3 p-2 bg-purple-50 rounded-2xl text-purple-700 border-l-4 border-purple-400 shadow-sm">
-                        <span class="time-badge">16:15</span>
-                        <span class="text-sm font-bold">🎂 Hora do Bolo e Cantar Parabéns!</span>
+                    <div class="flex items-center gap-3 p-2 bg-yellow-50 rounded-2xl text-yellow-900 border-l-4 border-yellow-500 shadow-sm">
+                        <span class="time-badge bg-amarelo-badge">16:15</span>
+                        <span class="text-sm font-bold tracking-tight">🎂 Hora do Bolo e Cantar Parabéns!</span>
                     </div>
 
-                    <div class="flex items-center gap-3 p-2 bg-orange-50 rounded-2xl text-orange-700 border-l-4 border-orange-400 shadow-sm">
-                        <span class="time-badge">16:30</span>
-                        <span class="text-sm font-bold">😋 Barriguinhas cheias e lanches!</span>
+                    <div class="flex items-center gap-3 p-2 bg-orange-50 rounded-2xl text-orange-800 border-l-4 border-orange-400 shadow-sm">
+                        <span class="time-badge bg-laranja-badge">16:30</span>
+                        <span class="text-sm font-bold tracking-tight leading-none">😋 Barriguinhas cheias agora os lanches vão descansar!</span>
                     </div>
 
-                    <div class="flex items-center gap-3 p-2 bg-red-50 rounded-2xl text-red-700 border-l-4 border-red-400 shadow-sm">
-                        <span class="time-badge">17:00</span>
-                        <span class="text-sm font-bold">👋 Hora das despedidas!</span>
+                    <div class="flex items-center gap-3 p-2 bg-red-50 rounded-2xl text-red-800 border-l-4 border-red-400 shadow-sm">
+                        <span class="time-badge bg-vermelho-badge">17:00</span>
+                        <span class="text-sm font-bold tracking-tight leading-none">👋 Os brinquedos vão dormir é hora dos abraços de despedida!</span>
                     </div>
+                    
                 </div>
             </div>
 
@@ -120,7 +131,7 @@
                 </p>
             </div>
 
-            <!-- Área Administrativa (Oculta por padrão) -->
+            <!-- Área Administrativa -->
             <div id="adminArea" style="display: none;" class="pt-4 border-t border-gray-100">
                 <button onclick="compartilharWhatsApp()" class="btn-whatsapp w-full py-4 rounded-2xl font-bold shadow-lg">
                     <span>ENVIAR CONVITE PELO WHATSAPP</span>
@@ -134,7 +145,6 @@
     </div>
 
     <script>
-        // Lógica para ativar painel admin via URL ou clique duplo no nome
         function verificarStatusAdmin() {
             const params = new URLSearchParams(window.location.search);
             return params.get('admin') === 'true';
@@ -153,7 +163,7 @@
             const textoMsg = encodeURIComponent(
                 `🔵 *GRANDE FESTA DO THOMAS!* 🔵\n\n` +
                 `Vou fazer 5 anos e gostaria muito que você viesse celebrar comigo! Teremos muitos jogos e alegria! 🎉🍭\n\n` +
-                `Clica no link abaixo para veres o meu convite especial: ✨\n\n` +
+                `Clica no link abaixo e veja meu convite especial: ✨\n\n` +
                 `${linkBase}\n\n` +
                 `📅 *QUANDO:* 14 de Fevereiro\n\n` +
                 `📍 *ONDE:* Rua Joaquim Alves Diniz, 35 (Esquina com estrada de Mogi das cruzes): Av. Imperador - Vila Rio Branco\n\n` +
@@ -162,7 +172,6 @@
             window.open(`https://api.whatsapp.com/send?text=${textoMsg}`, '_blank');
         }
 
-        // Animação de Confetes
         const wrapper = document.getElementById('confetti-wrapper');
         const colors = ['#FF5757', '#4CAF50', '#2196F3', '#FFDE59', '#E91E63'];
         function createConfetti() {
