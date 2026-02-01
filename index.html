@@ -153,35 +153,32 @@
         };
 
         // Função de clique secreto: precisa de 2 cliques rápidos para ativar
-        // E SÓ funciona se o parâmetro de admin estiver na URL.
         function secretAdminClick() {
             const now = Date.now();
-            
-            // Se demorar mais de 500ms entre cliques, reseta o contador
-            if (now - lastClickTime > 500) {
-                clickCount = 0;
-            }
-            
+            if (now - lastClickTime > 500) { clickCount = 0; }
             lastClickTime = now;
             clickCount++;
 
-            // Se atingir 2 cliques E tiver o parâmetro na URL, mostra o painel
             if (clickCount >= 2 && isUrlAdmin()) {
                 document.getElementById('adminArea').style.display = 'block';
-                clickCount = 0; // Reseta após ativar
+                clickCount = 0;
             }
         }
 
         function compartilharWhatsApp() {
-            const linkBase = window.location.origin + window.location.pathname;
+            // Pegamos o link e limpamos qualquer parâmetro de admin para o convidado não ver
+            const urlObj = new URL(window.location.href);
+            urlObj.searchParams.delete('admin');
+            const linkLimpo = urlObj.toString();
+
             const textoMsg = encodeURIComponent(
                 `🔵 *GRANDE FESTA DO THOMAS!* 🔵\n\n` +
-                `Vou fazer 5 anos e gostaria muito que você viesse celebrar comigo! Teremos muitos jogos e alegria! 🎉🍭\n\n` +
-                `Clica no link abaixo e veja meu convite especial: ✨\n\n` +
-                `${linkBase}\n\n` +
-                `📅 *QUANDO:* 14 de Fevereiro\n\n` +
-                `📍 *ONDE:* Rua Joaquim Alves Diniz, 35 (Esquina com estrada de Mogi das cruzes): Av. Imperador - Vila Rio Branco\n\n` +
-                `*Vem cedinho para aproveitarmos cada minuto dessa aventura juntos! Te espero com um sorriso gigante!* 🥳`
+                `Vou fazer 5 anos e gostaria muito que você viesse celebrar comigo! 🎉🍭\n\n` +
+                `Veja meu convite especial clicando abaixo: ✨\n` +
+                `${linkLimpo}\n\n` +
+                `📅 *DATA:* 14 de Fevereiro\n` +
+                `📍 *LOCAL:* Av. Imperador - Vila Rio Branco\n\n` +
+                `*Te espero com um sorriso gigante!* 🥳`
             );
             window.open(`https://api.whatsapp.com/send?text=${textoMsg}`, '_blank');
         }
