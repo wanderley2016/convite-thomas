@@ -8,7 +8,7 @@
     <title>Convite Thomas - 5 Anos</title>
     <meta property="og:title" content="Convite Thomas - 5 Anos">
     <meta property="og:description" content="Clica para veres o meu convite especial!">
-    <meta property="og:image" content="https://images.tcdn.com.br/img/img_prod/1041916/boneco_spank_colecao_turma_do_barulho_anos_80_1597_1_f85497063d80d68f6a917e761005f963.jpg">
+    <meta property="og:image" content="thomas.jpg">
     <meta property="og:type" content="website">
 
     <script src="https://cdn.tailwindcss.com"></script>
@@ -20,6 +20,7 @@
         @keyframes bounce { 0%, 100% { transform: translateY(0) rotate(-1deg); } 50% { transform: translateY(-10px) rotate(1deg); } }
         .confetti { position: absolute; width: 8px; height: 8px; z-index: 0; animation: fall linear infinite; }
         @keyframes fall { to { transform: translateY(110vh) rotate(720deg); } }
+        
         .photo-container {
             width: 160px; height: 160px; border: 8px solid white; border-radius: 50%;
             box-shadow: 0 10px 25px rgba(0,0,0,0.2); background: #ffffff;
@@ -27,10 +28,12 @@
             display: flex; align-items: center; justify-content: center;
         }
         .photo-container img { width: 100%; height: 100%; object-fit: cover; }
+        
         .expectation-message {
             background: linear-gradient(135deg, #60A5FA, #3B82F6); color: white;
             padding: 1.5rem; border-radius: 2rem; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
         }
+
         .btn-whatsapp { 
             background-color: #25D366; 
             color: white; 
@@ -43,45 +46,81 @@
             gap: 8px;
         }
         .btn-whatsapp:hover { background-color: #128C7E; transform: scale(1.02); }
+
+        /* Estilo Etiqueta (Badge) para Horários */
+        .time-badge {
+            background: #ffffff;
+            color: #1e40af;
+            padding: 2px 10px;
+            border-radius: 10px;
+            font-weight: 800;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+            min-width: 65px;
+            text-align: center;
+            border: 1px solid #e2e8f0;
+        }
     </style>
 </head>
 <body class="p-4 flex flex-col items-center min-h-screen">
 
     <div id="confetti-wrapper"></div>
 
+    <!-- Estrutura do Cartão -->
     <div class="max-w-md w-full bg-white rounded-[40px] shadow-2xl overflow-hidden relative border-[10px] border-blue-400 z-10">
         
+        <!-- Cabeçalho Azul com Foto -->
         <div class="bg-blue-400 p-6 text-center relative">
             <div class="photo-container">
-                <img src="https://images.tcdn.com.br/img/img_prod/1041916/boneco_spank_colecao_turma_do_barulho_anos_80_1597_1_f85497063d80d68f6a917e761005f963.jpg" alt="Boneco Spank" onerror="this.src='https://via.placeholder.com/160x160?text=Thomas'">
+                <img src="thomas.jpg" alt="Foto do Thomas" onerror="this.src='https://via.placeholder.com/160x160?text=Thomas'">
             </div>
-            <!-- Clique duplo aqui ativa o modo admin se a URL falhar -->
-            <h1 id="nomeThomas" ondblclick="ativarAdminManual()" class="title-font text-white text-3xl mt-4 bounce uppercase tracking-wide cursor-pointer select-none">THOMAS</h1>
+            <h1 id="nomeThomas" ondblclick="tentarAtivarAdmin()" class="title-font text-white text-3xl mt-4 bounce uppercase tracking-wide cursor-default select-none">THOMAS</h1>
             <p class="text-white text-lg font-bold italic">A Minha Grande Festa de 5 Anos!</p>
         </div>
 
         <div class="p-5 text-center space-y-5">
+            <!-- Data e Local -->
             <div class="bg-yellow-50 p-4 rounded-2xl border-2 border-dashed border-yellow-400">
-                <p class="text-blue-600 font-bold text-lg mb-1 text-center">📅 DATA: <span id="displayData">15 DE OUTUBRO</span></p>
-                <p class="text-gray-700 text-sm text-center font-bold">📍 <span id="displayLocal">RUA DAS BRINCADEIRAS, 123</span></p>
+                <p class="text-blue-600 font-bold text-lg mb-1 text-center">📅 DATA: <span id="displayData">14 DE FEVEREIRO</span></p>
+                <p class="text-gray-700 text-[11px] text-center font-bold leading-tight uppercase">
+                    📍 <span id="displayLocal">Rua Joaquim Alves Diniz, 35 (Esquina com estrada de Mogi das cruzes): Av. Imperador - Vila Rio Branco</span>
+                </p>
             </div>
 
-            <div class="space-y-2">
-                <h2 class="title-font text-orange-500 text-xl uppercase tracking-tighter">Etapas da Nossa Festa</h2>
-                <div class="text-left space-y-1 text-sm font-bold">
-                    <div class="flex justify-between p-2 bg-red-50 rounded-lg text-red-500"><span>13:00</span><span>🚀 Início</span></div>
-                    <div class="flex justify-between p-2 bg-blue-50 rounded-lg text-blue-500"><span>15:30</span><span>🍔 Lanche</span></div>
-                    <div class="flex justify-between p-2 bg-purple-600 rounded-lg text-white"><span>16:30</span><span>🎂 Parabéns!</span></div>
+            <!-- Programação com Estilo Badge -->
+            <div class="space-y-3">
+                <h2 class="title-font text-orange-500 text-xl uppercase tracking-tighter">O Plano da Diversão</h2>
+                <div class="text-left space-y-3">
+                    <div class="flex items-center gap-3 p-2 bg-blue-50 rounded-2xl text-blue-700 border-l-4 border-blue-400 shadow-sm">
+                        <span class="time-badge">13:00</span>
+                        <span class="text-sm font-bold">🚀 Começa a Brincadeira!</span>
+                    </div>
+
+                    <div class="flex items-center gap-3 p-2 bg-purple-50 rounded-2xl text-purple-700 border-l-4 border-purple-400 shadow-sm">
+                        <span class="time-badge">16:15</span>
+                        <span class="text-sm font-bold">🎂 Hora do Bolo e Cantar Parabéns!</span>
+                    </div>
+
+                    <div class="flex items-center gap-3 p-2 bg-orange-50 rounded-2xl text-orange-700 border-l-4 border-orange-400 shadow-sm">
+                        <span class="time-badge">16:30</span>
+                        <span class="text-sm font-bold">😋 Barriguinhas cheias e lanches!</span>
+                    </div>
+
+                    <div class="flex items-center gap-3 p-2 bg-red-50 rounded-2xl text-red-700 border-l-4 border-red-400 shadow-sm">
+                        <span class="time-badge">17:00</span>
+                        <span class="text-sm font-bold">👋 Hora das despedidas!</span>
+                    </div>
                 </div>
             </div>
 
+            <!-- Mensagem Final -->
             <div class="expectation-message">
-                <p class="title-font text-xl mb-1">Estamos à tua espera!</p>
+                <p class="title-font text-xl mb-1 text-center">Vamos festejar!</p>
                 <p class="text-sm font-medium leading-relaxed">
                     A tua presença tornará este dia inesquecível. Vamos brincar e celebrar juntos!
                 </p>
             </div>
 
+            <!-- Área Administrativa (Oculta por padrão) -->
             <div id="adminArea" style="display: none;" class="pt-4 border-t border-gray-100">
                 <button onclick="compartilharWhatsApp()" class="btn-whatsapp w-full py-4 rounded-2xl font-bold shadow-lg">
                     <span>ENVIAR CONVITE PELO WHATSAPP</span>
@@ -95,45 +134,35 @@
     </div>
 
     <script>
-        // Tenta ativar via URL assim que carregar
-        function verificarAdmin() {
+        // Lógica para ativar painel admin via URL ou clique duplo no nome
+        function verificarStatusAdmin() {
             const params = new URLSearchParams(window.location.search);
-            if (params.get('admin') === 'true') {
-                ativarAdminManual();
-            }
+            return params.get('admin') === 'true';
         }
 
-        // Função que realmente mostra o botão
-        function ativarAdminManual() {
-            const area = document.getElementById('adminArea');
-            if(area) {
-                area.style.display = 'block';
-                // Feedback visual leve para saber que ativou
-                console.log("Modo Admin Ativado");
-            }
-        }
+        window.onload = function() {
+            if (verificarStatusAdmin()) document.getElementById('adminArea').style.display = 'block';
+        };
 
-        window.onload = verificarAdmin;
+        function tentarAtivarAdmin() {
+            document.getElementById('adminArea').style.display = 'block';
+        }
 
         function compartilharWhatsApp() {
             const linkBase = window.location.origin + window.location.pathname;
-            const data = document.getElementById('displayData').innerText;
-            const local = document.getElementById('displayLocal').innerText;
-
             const textoMsg = encodeURIComponent(
-                `🎈 *ESTÁS CONVIDADO: O THOMAS FAZ 5!* 🎈\n\n` +
-                `Estou muito feliz e quero comemorar contigo! \n\n` +
-                `Clica no link abaixo e vê o meu convite para ti! 🌟\n` +
+                `🔵 *GRANDE FESTA DO THOMAS!* 🔵\n\n` +
+                `Vou fazer 5 anos e gostaria muito que você viesse celebrar comigo! Teremos muitos jogos e alegria! 🎉🍭\n\n` +
+                `Clica no link abaixo para veres o meu convite especial: ✨\n\n` +
                 `${linkBase}\n\n` +
-                `📅 *DATA:* ${data}\n` +
-                `📍 *LOCAL:* ${local}\n\n` +
-                `🚀 Espero por ti! 🥳`
+                `📅 *QUANDO:* 14 de Fevereiro\n\n` +
+                `📍 *ONDE:* Rua Joaquim Alves Diniz, 35 (Esquina com estrada de Mogi das cruzes): Av. Imperador - Vila Rio Branco\n\n` +
+                `*Vem cedinho para aproveitarmos cada minuto dessa aventura juntos! Te espero com um sorriso gigante!* 🥳`
             );
-
             window.open(`https://api.whatsapp.com/send?text=${textoMsg}`, '_blank');
         }
 
-        // Confetes
+        // Animação de Confetes
         const wrapper = document.getElementById('confetti-wrapper');
         const colors = ['#FF5757', '#4CAF50', '#2196F3', '#FFDE59', '#E91E63'];
         function createConfetti() {
@@ -142,8 +171,6 @@
             confetti.className = 'confetti';
             confetti.style.left = Math.random() * 100 + 'vw';
             confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-            confetti.style.width = '8px';
-            confetti.style.height = '8px';
             confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
             wrapper.appendChild(confetti);
             setTimeout(() => { confetti.remove(); }, 5000);
