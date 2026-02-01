@@ -47,7 +47,6 @@
         }
         .btn-whatsapp:hover { background-color: #128C7E; transform: scale(1.02); }
 
-        /* Estilo Base da Etiqueta (Badge) */
         .time-badge {
             color: #ffffff;
             padding: 4px 12px;
@@ -61,11 +60,10 @@
             text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
         }
 
-        /* Cores específicas solicitadas */
-        .bg-verde-badge { background-color: #22C55E; }   /* 13:00 */
-        .bg-amarelo-badge { background-color: #EAB308; } /* 16:15 */
-        .bg-laranja-badge { background-color: #F97316; } /* 16:30 */
-        .bg-vermelho-badge { background-color: #EF4444; } /* 17:00 */
+        .bg-verde-badge { background-color: #22C55E; }
+        .bg-amarelo-badge { background-color: #EAB308; }
+        .bg-laranja-badge { background-color: #F97316; }
+        .bg-vermelho-badge { background-color: #EF4444; }
 
     </style>
 </head>
@@ -73,20 +71,18 @@
 
     <div id="confetti-wrapper"></div>
 
-    <!-- Estrutura do Cartão -->
     <div class="max-w-md w-full bg-white rounded-[40px] shadow-2xl overflow-hidden relative border-[10px] border-blue-400 z-10">
         
-        <!-- Cabeçalho Azul com Foto -->
         <div class="bg-blue-400 p-6 text-center relative">
             <div class="photo-container">
                 <img src="thomas.png" alt="Foto do Thomas" onerror="this.src='https://via.placeholder.com/160x160?text=Thomas'">
             </div>
+            <!-- Função de duplo clique agora protegida -->
             <h1 id="nomeThomas" ondblclick="tentarAtivarAdmin()" class="title-font text-white text-3xl mt-4 bounce uppercase tracking-wide cursor-default select-none">THOMAS</h1>
             <p class="text-white text-lg font-bold italic">A Minha Grande Festa de 5 Anos!</p>
         </div>
 
         <div class="p-5 text-center space-y-5">
-            <!-- Data e Local -->
             <div class="bg-yellow-50 p-4 rounded-2xl border-2 border-dashed border-yellow-400">
                 <p class="text-blue-600 font-bold text-lg mb-1 text-center uppercase tracking-tighter">📅 DATA: 14 DE FEVEREIRO</p>
                 <div class="h-[1px] bg-yellow-200 w-1/2 mx-auto my-2"></div>
@@ -95,11 +91,9 @@
                 </p>
             </div>
 
-            <!-- Programação com Badges Coloridos -->
             <div class="space-y-3">
                 <h2 class="title-font text-orange-500 text-xl uppercase tracking-tighter">O Plano da Diversão</h2>
                 <div class="text-left space-y-3">
-                    
                     <div class="flex items-center gap-3 p-2 bg-green-50 rounded-2xl text-green-800 border-l-4 border-green-400 shadow-sm">
                         <span class="time-badge bg-verde-badge">13:00</span>
                         <span class="text-sm font-bold tracking-tight">🚀 Começa a Brincadeira!</span>
@@ -119,11 +113,9 @@
                         <span class="time-badge bg-vermelho-badge">17:00</span>
                         <span class="text-sm font-bold tracking-tight leading-none">👋 Os brinquedos vão dormir é hora dos abraços de despedida!</span>
                     </div>
-                    
                 </div>
             </div>
 
-            <!-- Mensagem Final -->
             <div class="expectation-message">
                 <p class="title-font text-xl mb-1 text-center">Vamos festejar!</p>
                 <p class="text-sm font-medium leading-relaxed">
@@ -131,7 +123,6 @@
                 </p>
             </div>
 
-            <!-- Área Administrativa -->
             <div id="adminArea" style="display: none;" class="pt-4 border-t border-gray-100">
                 <button onclick="compartilharWhatsApp()" class="btn-whatsapp w-full py-4 rounded-2xl font-bold shadow-lg">
                     <span>ENVIAR CONVITE PELO WHATSAPP</span>
@@ -145,17 +136,26 @@
     </div>
 
     <script>
+        // Função central para verificar se é administrador
         function verificarStatusAdmin() {
             const params = new URLSearchParams(window.location.search);
             return params.get('admin') === 'true';
         }
 
+        // Ao carregar a página, só mostra se a URL tiver o parâmetro
         window.onload = function() {
-            if (verificarStatusAdmin()) document.getElementById('adminArea').style.display = 'block';
+            if (verificarStatusAdmin()) {
+                document.getElementById('adminArea').style.display = 'block';
+            }
         };
 
+        // Função de atalho protegida: Só funciona se a URL já indicar modo admin
         function tentarAtivarAdmin() {
-            document.getElementById('adminArea').style.display = 'block';
+            if (verificarStatusAdmin()) {
+                document.getElementById('adminArea').style.display = 'block';
+            } else {
+                console.log("Acesso admin negado. Use o parâmetro na URL primeiro.");
+            }
         }
 
         function compartilharWhatsApp() {
